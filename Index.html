@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-blue: #a2d2ff;
+            --dark-blue: #4a90e2;
+            --soft-white: #f0f7ff;
+            --text-color: #444;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--soft-white);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(162, 210, 255, 0.3);
+            border: 4px solid var(--main-blue);
+        }
+
+        /* --- Heading / Contact --- */
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--main-blue);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-weight: 600;
+        }
+
+        /* --- Sections --- */
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            display: inline-block;
+            background-color: var(--main-blue);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .entry {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        .entry-title {
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        /* --- Skills (Cute Tags) --- */
+        .skill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #e1f0ff;
+            border: 1px solid var(--main-blue);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Personality Note --- */
+        .personality-blob {
+            background: #fff9c4; /* Soft yellow for a pop of color */
+            padding: 15px;
+            border-radius: 20px;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>Hi, I'm Sion! ✨</h1>
+        <div class="contact-info">
+            <p>📍 Location | 📞 123-456-7890 | ✉️ hello@email.com</p>
+            <p>🔗 linkedin.com/in/yourname</p>
+        </div>
+    </header>
+
+    <div class="personality-blob">
+        "A creative problem-solver with a passion for bright ideas and organized spaces! I believe in working hard and being kind."
+    </div>
+
+    <section id="objective">
+        <h2>Employment Objectives</h2>
+        <p>Seeking a position as a [Job Title] where I can apply my skills in [Skill A] and [Skill B] to help [Company Name] grow while continuing to learn and develop professionally.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="entry">
+            <div class="entry-title">Degree Name / Major</div>
+            <div>University Name | Graduated 20XX</div>
+            <small>Relevant coursework or GPA</small>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="entry">
+            <div class="entry-title">Job Title - Company Name</div>
+            <div>City, State | 20XX – Present</div>
+            <ul>
+                <li>Accomplished [X] by doing [Y] resulting in [Z].</li>
+                <li>Collaborated with a team of [N] to deliver projects on time.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skill-container">
+            <span class="skill-tag">Coding</span>
+            <span class="skill-tag">Design</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Teamwork</span>
+        </div>
+    </section>
+
+    <section id="additional">
+        <h2>Honors & Awards</h2>
+        <div class="entry">
+            <ul>
+                <li>🏆 Dean's List (20XX)</li>
+                <li>🌟 Volunteer of the Year - Community Center</li>
+                <li>🥇 1st Place - Local Hackathon/Competition</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="references">
+        <h2>References</h2>
+        <p>Available upon request. I'd be happy to put you in touch with people who can vouch for my work!</p>
+    </section>
+
+    <footer>
+        <p>Made with 💙 by Sion</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
