@@ -3,185 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Resume</title>
+    <title>My Creative Resume</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables for easy color changes */
         :root {
-            --main-blue: #a2d2ff;
-            --dark-blue: #4a90e2;
-            --soft-white: #f0f7ff;
-            --text-color: #444;
+            --bg-gradient: linear-gradient(135deg, #e0f2ff 0%, #ffffff 100%);
+            --accent-blue: #7fb3ff;
+            --deep-blue: #4a90e2;
+            --soft-shadow: 0 12px 40px rgba(127, 179, 255, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--soft-white);
-            color: var(--text-color);
-            line-height: 1.6;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #444;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .container {
-            max-width: 800px;
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(162, 210, 255, 0.3);
-            border: 4px solid var(--main-blue);
+        /* Animated Background Decor */
+        body::before {
+            content: "☁️";
+            position: fixed;
+            top: 10%; left: 5%;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
         }
 
-        /* --- Heading / Contact --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Main Glass Container */
+        .resume-card {
+            max-width: 850px;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--soft-shadow);
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Styling */
         header {
             text-align: center;
-            border-bottom: 2px dashed var(--main-blue);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        h1 {
-            color: var(--dark-blue);
-            font-size: 2.5rem;
-            margin-bottom: 5px;
+        .profile-title {
+            font-size: 3rem;
+            color: var(--deep-blue);
+            margin: 0;
+            text-shadow: 2px 2px 0px #fff;
         }
 
-        .contact-info p {
-            margin: 5px 0;
-            font-weight: 600;
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
 
-        /* --- Sections --- */
+        .contact-item {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--accent-blue);
+        }
+
+        /* Creative Section Styling */
         section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
         h2 {
-            display: inline-block;
-            background-color: var(--main-blue);
+            font-size: 1.5rem;
             color: white;
-            padding: 5px 20px;
-            border-radius: 15px;
-            font-size: 1.2rem;
+            background: var(--deep-blue);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 0 20px 20px 20px;
+            margin-bottom: 25px;
+            box-shadow: 4px 4px 0px var(--accent-blue);
+        }
+
+        /* Experience & Education Cards */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 25px;
             margin-bottom: 15px;
+            border-left: 5px solid var(--accent-blue);
         }
 
-        .entry {
-            margin-bottom: 15px;
-            padding-left: 10px;
+        .glass-box:hover {
+            transform: translateX(10px);
+            background: white;
         }
 
-        .entry-title {
-            font-weight: 700;
-            color: var(--dark-blue);
-        }
-
-        /* --- Skills (Cute Tags) --- */
-        .skill-container {
+        .job-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            justify-content: space-between;
+            font-weight: 700;
+            color: var(--deep-blue);
         }
 
-        .skill-tag {
-            background: #e1f0ff;
-            border: 1px solid var(--main-blue);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        /* Advanced Skills Tags */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
         }
 
-        /* --- Personality Note --- */
-        .personality-blob {
-            background: #fff9c4; /* Soft yellow for a pop of color */
-            padding: 15px;
-            border-radius: 20px;
-            font-style: italic;
+        .skill-pill {
+            background: white;
             text-align: center;
-            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
         }
 
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-top: 20px;
+        .skill-pill:hover {
+            border-color: var(--accent-blue);
+            color: var(--deep-blue);
+            transform: scale(1.05) rotate(2deg);
         }
+
+        /* References / Additional */
+        .accent-text {
+            color: var(--deep-blue);
+            font-weight: 700;
+        }
+
+        /* Custom Scrollbar for a "cute" look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <header>
-        <h1>Hi, I'm Sion! ✨</h1>
-        <div class="contact-info">
-            <p>📍 HUFS Dorm A | 📞 010-2495-1160 | ✉️ sion@hufs.ac.kr</p>
-            <p>🔗 <a href="https://www.linkedin.com/in/sion-l-212084408">https://www.linkedin.com/in/sion-l-212084408</a>#</p>
-        </div>
-    </header>
+    <div class="resume-card">
+        <header>
+            <h1 class="profile-title">Hello, I'm [Name]! ✨</h1>
+            <div class="contact-bar">
+                <div class="contact-item">📧 yourname@email.com</div>
+                <div class="contact-item">📍 Seoul, South Korea</div>
+                <div class="contact-item">💼 linkedin.com/in/user</div>
+            </div>
+        </header>
 
-    <div class="personality-blob">
-        "A creative problem-solver with a passion for bright ideas and organized spaces! I believe in working hard and being kind."
+        <section>
+            <h2>Employment Objectives</h2>
+            <div class="glass-box" style="border-left: 5px solid #ffcfd2;">
+                <p>I am a creative explorer looking to bring my <strong>[Your Skill]</strong> and <strong>[Your Passion]</strong> to a team that loves innovation. I strive to make things that are both functional and beautiful!</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Professional Experience</h2>
+            <div class="glass-box">
+                <div class="job-header">
+                    <span>Creative Lead @ Dream Co.</span>
+                    <span>2023 - Present</span>
+                </div>
+                <p>Reduced design turnaround time by 20% by implementing a new cute-focused branding guide.</p>
+            </div>
+            <div class="glass-box">
+                <div class="job-header">
+                    <span>Junior Designer @ Cloud Inc.</span>
+                    <span>2021 - 2023</span>
+                </div>
+                <p>Collaborated on 10+ major web projects focusing on user-friendly layouts and pastel themes.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="glass-box">
+                <div class="job-header">
+                    <span>Bachelor of Arts - Digital Design</span>
+                    <span>Class of 2021</span>
+                </div>
+                <p>University of Excellence | GPA: 3.9/4.0</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>My Superpowers (Skills)</h2>
+            <div class="skills-grid">
+                <div class="skill-pill">HTML/CSS</div>
+                <div class="skill-pill">Adobe Suite</div>
+                <div class="skill-pill">UX Writing</div>
+                <div class="skill-pill">Leadership</div>
+                <div class="skill-pill">Project Mgt</div>
+                <div class="skill-pill">Empathy</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Honors & Awards</h2>
+            <p>🏅 <strong>Innovation Award:</strong> Best UI Design (2025)</p>
+            <p>⭐ <strong>Employee of the Month:</strong> July 2024</p>
+        </section>
+
+        <section>
+            <h2>References</h2>
+            <p class="accent-text">References are happy to chat! Just ask me for their contact info.</p>
+        </section>
     </div>
 
-    <section id="objective">
-        <h2>Employment Objectives</h2>
-        <p>Seeking a position as a Free Job where I can apply my skills in English Interpretation and Translation and ICT & IT to help you grow while continuing to learn and develop professionally.</p>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <div class="entry">
-            <div class="entry-title">convergence studies / English Interpretation and Translation, ICT&AI</div>
-            <div>Hankuk University of foreign studies | 2026 ~ </div>
-            <small></small>
-        </div>
-    </section>
-
-    <section id="experience">
-        <h2>Professional Experience</h2>
-        <div class="entry">
-            <div class="entry-title"></div>
-            <div></div>
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skill-container">
-            <span class="skill-tag">Programming: C, Python, Java</span>
-            <span class="skill-tag">Creativity & Critical thinking</span>
-            <span class="skill-tag">Openness to Learning</span>
-        </div>
-    </section>
-
-    <section id="additional">
-        <h2>Honors & Awards</h2>
-        <div class="entry">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="references">
-        <h2>References</h2>
-        <p>Available upon request. I'd be happy to put you in touch with people who can vouch for my work!</p>
-    </section>
-
-    <footer>
-        <p>Made with 💙 by Sion</p>
+    <footer style="margin-top: 30px; opacity: 0.6;">
+        <p>Built with 💙 and a little bit of magic.</p>
     </footer>
-
-</div>
 
 </body>
 </html>
