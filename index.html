@@ -3,251 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Celestial Resume | Lofi Aesthetic</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Variables for easy color changes */
         :root {
-            --bg-gradient: linear-gradient(135deg, #e0f2ff 0%, #ffffff 100%);
-            --accent-blue: #7fb3ff;
-            --deep-blue: #4a90e2;
-            --soft-shadow: 0 12px 40px rgba(127, 179, 255, 0.2);
-            --glass-bg: rgba(255, 255, 255, 0.7);
+            --sky-dark: #020617;
+            --sky-blue: #0ea5e9;
+            --accent: #7dd3fc;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e2e8f0;
         }
 
-        * {
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
+        /* --- Global Styles --- */
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: #444;
             margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 0;
+            background: linear-gradient(to bottom, #0f172a, #020617);
+            font-family: 'Quicksand', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Background Decor */
-        body::before {
-            content: "☁️";
+        /* --- Celestial Background Layer --- */
+        .stars-container {
             position: fixed;
-            top: 10%; left: 5%;
-            font-size: 3rem;
-            opacity: 0.3;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* Main Glass Container */
-        .resume-card {
-            max-width: 850px;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: var(--soft-shadow);
-            padding: 50px;
-            position: relative;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
             overflow: hidden;
         }
 
-        /* Header Styling */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .profile-title {
-            font-size: 3rem;
-            color: var(--deep-blue);
-            margin: 0;
-            text-shadow: 2px 2px 0px #fff;
-        }
-
-        .contact-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .contact-item {
+        .star-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
             background: white;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border: 1px solid var(--accent-blue);
+            box-shadow: 0 0 10px white;
         }
 
-        /* Creative Section Styling */
-        section {
-            margin-bottom: 40px;
+        /* --- Layout & Glassmorphism --- */
+        .resume-wrapper {
+            max-width: 850px;
+            margin: 80px auto;
+            padding: 0 20px;
             position: relative;
+            z-index: 1;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            color: white;
-            background: var(--deep-blue);
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 0 20px 20px 20px;
-            margin-bottom: 25px;
-            box-shadow: 4px 4px 0px var(--accent-blue);
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Experience & Education Cards */
-        .glass-box {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 20px;
-            border-radius: 25px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--accent-blue);
+        .glass-card:hover {
+            transform: scale(1.02);
+            border: 1px solid var(--sky-blue);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
         }
 
-        .glass-box:hover {
-            transform: translateX(10px);
-            background: white;
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0 0 1rem 0;
         }
 
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            color: var(--deep-blue);
+        .glow-title {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #fff, var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.5));
         }
 
-        /* Advanced Skills Tags */
-        .skills-grid {
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* --- Grid & Components --- */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
-        .skill-pill {
-            background: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 2px solid transparent;
+        .skill-tag {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid var(--sky-blue);
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin: 5px;
+            font-size: 0.85rem;
+            animation: pulse 4s infinite ease-in-out;
         }
 
-        .skill-pill:hover {
-            border-color: var(--accent-blue);
-            color: var(--deep-blue);
-            transform: scale(1.05) rotate(2deg);
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
         }
 
-        /* References / Additional */
-        .accent-text {
-            color: var(--deep-blue);
-            font-weight: 700;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Custom Scrollbar for a "cute" look */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-blue);
-            border-radius: 10px;
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-3px); }
         }
 
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .glow-title { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="resume-card">
-        <header>
-            <h1 class="profile-title">Hello, I'm [Name]! ✨</h1>
-            <div class="contact-bar">
-                <div class="contact-item">📧 yourname@email.com</div>
-                <div class="contact-item">📍 Seoul, South Korea</div>
-                <div class="contact-item">💼 linkedin.com/in/user</div>
-            </div>
+    <div class="stars-container" id="starField"></div>
+
+    <main class="resume-wrapper">
+        <header class="glass-card reveal">
+            <h1 class="glow-title">Alex Sterling</h1>
+            <p class="subtitle">Digital Architect</p>
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
+            <p>📍 Orbit Station 9 | 📧 hello@alexspace.io | 🔗 linkedin.com/in/alex</p>
         </header>
 
-        <section>
-            <h2>Employment Objectives</h2>
-            <div class="glass-box" style="border-left: 5px solid #ffcfd2;">
-                <p>I am a creative explorer looking to bring my <strong>[Your Skill]</strong> and <strong>[Your Passion]</strong> to a team that loves innovation. I strive to make things that are both functional and beautiful!</p>
-            </div>
+        <section class="glass-card reveal">
+            <h3>// Objective</h3>
+            <p>Seeking to leverage 5+ years of aesthetic engineering to build immersive web experiences that prioritize user tranquility and high-performance functionality.</p>
         </section>
 
-        <section>
-            <h2>Professional Experience</h2>
-            <div class="glass-box">
-                <div class="job-header">
-                    <span>Creative Lead @ Dream Co.</span>
-                    <span>2023 - Present</span>
+        <div class="grid">
+            <section class="glass-card reveal">
+                <h3>// Education</h3>
+                <div style="border-left: 2px solid var(--sky-blue); padding-left: 15px;">
+                    <h4 style="margin:0">B.S. Interaction Design</h4>
+                    <small>Skyline University | 2018 - 2022</small>
                 </div>
-                <p>Reduced design turnaround time by 20% by implementing a new cute-focused branding guide.</p>
-            </div>
-            <div class="glass-box">
-                <div class="job-header">
-                    <span>Junior Designer @ Cloud Inc.</span>
-                    <span>2021 - 2023</span>
+            </section>
+
+            <section class="glass-card reveal">
+                <h3>// Professional Experience</h3>
+                <div style="border-left: 2px solid var(--sky-blue); padding-left: 15px;">
+                    <h4 style="margin:0">Senior Creative Lead</h4>
+                    <small>Nebula Systems | 2022 - Present</small>
                 </div>
-                <p>Collaborated on 10+ major web projects focusing on user-friendly layouts and pastel themes.</p>
-            </div>
+            </section>
+        </div>
+
+        <section class="glass-card reveal">
+            <h3>// Tech Constellation</h3>
+            <div class="skill-tag">JavaScript ES6+</div>
+            <div class="skill-tag">Three.js</div>
+            <div class="skill-tag">React / Next.js</div>
+            <div class="skill-tag">CSS Animations</div>
+            <div class="skill-tag">UI/UX Strategy</div>
         </section>
 
-        <section>
-            <h2>Education</h2>
-            <div class="glass-box">
-                <div class="job-header">
-                    <span>Bachelor of Arts - Digital Design</span>
-                    <span>Class of 2021</span>
-                </div>
-                <p>University of Excellence | GPA: 3.9/4.0</p>
-            </div>
+        <section class="glass-card reveal">
+            <h3>// Honors & Activities</h3>
+            <p>✨ <b>Global Design Prize 2025:</b> Awarded for innovative glassmorphic interfaces.</p>
+            <p>✨ <b>Open Source Contributor:</b> Active member of the 'Lofi-UI' library community.</p>
         </section>
 
-        <section>
-            <h2>My Superpowers (Skills)</h2>
-            <div class="skills-grid">
-                <div class="skill-pill">HTML/CSS</div>
-                <div class="skill-pill">Adobe Suite</div>
-                <div class="skill-pill">UX Writing</div>
-                <div class="skill-pill">Leadership</div>
-                <div class="skill-pill">Project Mgt</div>
-                <div class="skill-pill">Empathy</div>
-            </div>
-        </section>
+        <footer class="glass-card reveal" style="text-align: center;">
+            <h3>// References</h3>
+            <p>Available upon request. Let's build something beautiful together.</p>
+        </footer>
+    </main>
 
-        <section>
-            <h2>Honors & Awards</h2>
-            <p>🏅 <strong>Innovation Award:</strong> Best UI Design (2025)</p>
-            <p>⭐ <strong>Employee of the Month:</strong> July 2024</p>
-        </section>
+    <script>
+        // 1. Dynamic Star Creation Logic
+        const starField = document.getElementById('starField');
+        const starCount = 150;
 
-        <section>
-            <h2>References</h2>
-            <p class="accent-text">References are happy to chat! Just ask me for their contact info.</p>
-        </section>
-    </div>
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star-layer';
+            
+            // Randomize position
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // Randomize size (1px to 3px)
+            const size = Math.random() * 3;
+            
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Randomize twinkle animation duration
+            const duration = 2 + Math.random() * 5;
+            star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
+            
+            starField.appendChild(star);
+        }
 
-    <footer style="margin-top: 30px; opacity: 0.6;">
-        <p>Built with 💙 and a little bit of magic.</p>
-    </footer>
+        // Add Twinkle Keyframes via JS
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes twinkle {
+                0%, 100% { opacity: 0.3; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.2); }
+            }
+        `;
+        document.head.appendChild(styleSheet);
 
+        // 2. Scroll Reveal Logic
+        const revealSections = () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(window_el => {
+                const triggerBottom = window.innerHeight / 5 * 4;
+                const elementTop = window_el.getBoundingClientRect().top;
+                
+                if(elementTop < triggerBottom) {
+                    window_el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealSections);
+        // Run once on load to show top elements
+        revealSections();
+    </script>
 </body>
 </html>
