@@ -3,193 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celestial Resume | Lofi Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Space+Mono&display=swap" rel="stylesheet">
+    <title>Dreamy Tech Resume | Lofi Sky Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS STYLES --- */
         :root {
-            --sky-blue: #a2d2ff;
-            --deep-space: #0b132b;
-            --glass: rgba(255, 255, 255, 0.05);
+            --main-sky: #e0f2fe;
+            --accent-blue: #7dd3fc;
+            --pastel-purple: #f5f3ff;
+            --text-dark: #475569;
+            --glass: rgba(255, 255, 255, 0.7);
         }
 
         body {
-            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
-            color: var(--sky-blue);
-            font-family: 'Quicksand', sans-serif;
             margin: 0;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f5f3ff 100%);
+            color: var(--text-dark);
+            font-family: 'Fredoka', sans-serif;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            scroll-behavior: smooth;
         }
 
-        /* Star Background Animation */
-        .stars-container {
+        /* --- HIGH-TECH BACKGROUND: Interactive Floating Particles --- */
+        #particle-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: transparent;
+            pointer-events: none;
         }
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: twinkle var(--duration) infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* Glassmorphism Layout */
-        .container {
-            max-width: 800px;
-            width: 90%;
-            padding: 50px 0;
-        }
-
-        .glass-card {
+        /* --- STICKY NAVIGATION (The "Resume" Structure) --- */
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background: var(--glass);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(162, 210, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .glass-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-card:hover {
-            transform: scale(1.02);
-            border-color: var(--sky-blue);
-            box-shadow: 0 0 20px rgba(162, 210, 255, 0.2);
-        }
-
-        h1, h3 {
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--sky-blue);
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(162, 210, 255, 0.15);
-            padding: 6px 16px;
+            backdrop-filter: blur(10px);
+            padding: 15px;
             border-radius: 20px;
-            margin: 5px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(162, 210, 255, 0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            z-index: 100;
+            border: 1px solid white;
         }
 
-        .social-links { margin-top: 15px; opacity: 0.8; }
-        .entry { margin-top: 20px; }
-        .date { float: right; font-size: 0.9rem; opacity: 0.7; }
+        nav a {
+            display: block;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            transition: color 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        nav a:hover { color: #38bdf8; }
+
+        /* --- CONTENT WRAPPER --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        /* --- THE RESUME CARD --- */
+        .resume-section {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 50px;
+            margin-bottom: 50px;
+            border: 2px solid white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .resume-section:hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 { font-size: 3.5rem; margin: 0; color: #0ea5e9; }
+        h3 { 
+            font-family: 'JetBrains Mono', monospace; 
+            background: #bae6fd; 
+            display: inline-block; 
+            padding: 5px 15px; 
+            border-radius: 10px;
+            color: #0369a1;
+        }
+
+        .contact-pill {
+            display: inline-flex;
+            gap: 15px;
+            margin-top: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        /* --- CUTE DECORATION: THE FLOATING ASTRONAUT --- */
+        .floating-star {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 4rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(15deg); }
+        }
+
+        /* --- LISTS & ENTRIES --- */
+        .entry { margin-top: 25px; border-left: 3px solid #7dd3fc; padding-left: 20px; }
+        .tag {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 12px;
+            margin: 5px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            font-weight: 500;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="stars-container" id="stars"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <nav>
+        <a href="#header">Home</a>
+        <a href="#objective">Objective</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#additional">Additional</a>
+        <a href="#references">References</a>
+    </nav>
 
     <main class="container">
-        <header class="glass-card" id="header">
-            <h1>Your Full Name</h1>
-            <p>Miami, FL | [span_3](start_span)305-555-0185 | sflores@email.com</p>[span_3](end_span)
-            <div class="social-links">LinkedIn • GitHub • Portfolio</div>
+        <header id="header" class="resume-section">
+            <div class="floating-star">⭐</div>
+            <p style="font-family:'JetBrains Mono';">Digital Resume Portfolio v1.0</p>
+            <h1>Your Name</h1>
+            <div class="contact-pill">
+                <span>📍 Miami, FL</span>
+                <span>📞 305-555-0185</span>
+                <span>✉️ sflores@email.com</span>
+            </div>
         </header>
 
-        <section class="glass-card">
+        <section id="objective" class="resume-section">
             <h3>Objective</h3>
-            [span_4](start_span)<p>Experienced professional seeking to apply a technical background to exceed engineering and business needs while fostering an aesthetic and organized work environment.[span_4](end_span)</p>
+            <p style="font-size: 1.2rem; line-height: 1.6;">
+                [span_4](start_span)Highly motivated candidate seeking a creative role to apply my 15+ years of technical background to exceed organizational needs[span_4](end_span).
+            </p>
         </section>
 
-        <section class="glass-card">
+        <section id="education" class="resume-section">
             <h3>Education</h3>
             <div class="entry">
-                <span class="date">2020 - 2024</span>
-                <strong>North Manhattan University</strong>
-                [span_5](start_span)<p>Bachelor of Science in Communication[span_5](end_span)</p>
+                <strong>Longford Tech</strong> | [span_5](start_span)Bachelor of Engineering[span_5](end_span)
+                <p>2010 - 2014 | [span_6](start_span)Focus on Computer Science & Communication[span_6](end_span)</p>
             </div>
         </section>
 
-        <section class="glass-card">
-            <h3>Professional Experience</h3>
+        <section id="experience" class="resume-section">
+            <h3>Work Experience</h3>
             <div class="entry">
-                <span class="date">Oct 2020 - Present</span>
-                <strong>Studio Marketing Firm</strong>
-                [span_6](start_span)<p><em>Director of Outside Sales</em>[span_6](end_span)</p>
+                <strong>Studio Marketing Firm</strong> | [span_7](start_span)Director of Outside Sales[span_7](end_span)
+                <p>2020 - Present</p>
                 <ul>
-                    [span_7](start_span)<li>Promoted company products at various seminars and conventions.[span_7](end_span)</li>
-                    [span_8](start_span)<li>Drove over $250k in profits for the company.[span_8](end_span)</li>
-                    [span_9](start_span)<li>Oversaw a team of 15+ employees.[span_9](end_span)</li>
+                    [span_8](start_span)<li>Managed a team of 15+ employees[span_8](end_span).</li>
+                    [span_9](start_span)<li>Drove over $250k in profits through strategic seminars[span_9](end_span).</li>
                 </ul>
             </div>
         </section>
 
-        <section class="glass-card">
-            <h3>Skills</h3>
-            <div class="skill-tags">
-                <span class="tag">Sales Strategy</span>
-                [span_10](start_span)<span class="tag">C++ / Linux</span>[span_10](end_span)
-                [span_11](start_span)<span class="tag">AutoCAD</span>[span_11](end_span)
-                [span_12](start_span)<span class="tag">Bilingual (English/Italian)</span>[span_12](end_span)
-                [span_13](start_span)<span class="tag">Project Management</span>[span_13](end_span)
+        <section id="skills" class="resume-section">
+            <h3>Skill Galaxy</h3>
+            <div style="margin-top:20px;">
+                [span_10](start_span)<span class="tag">AutoCAD[span_10](end_span)</span>
+                [span_11](start_span)<span class="tag">Sales Management[span_11](end_span)</span>
+                [span_12](start_span)<span class="tag">Bilingual (English/Italian)[span_12](end_span)</span>
+                [span_13](start_span)<span class="tag">C++ & Linux[span_13](end_span)</span>
+                [span_14](start_span)<span class="tag">Project Management[span_14](end_span)</span>
             </div>
         </section>
 
-        <section class="glass-card">
-            <h3>Honors & Awards</h3>
-            [span_14](start_span)<p>• Certified Scrum Master[span_14](end_span)</p>
-            [span_15](start_span)<p>• Received maximum score on overall client satisfaction[span_15](end_span)</p>
+        <section id="additional" class="resume-section">
+            <h3>Honors & Projects</h3>
+            [span_15](start_span)<p>• Certified Scrum Master[span_15](end_span)</p>
+            [span_16](start_span)<p>• Received maximum client satisfaction scores[span_16](end_span)</p>
         </section>
 
-        <section class="glass-card">
+        <section id="references" class="resume-section">
             <h3>References</h3>
-            [span_16](start_span)<p>Professional references available upon request.[span_16](end_span)</p>
-            [span_17](start_span)<p><small>Note: Permission obtained from all references in advance.[span_17](end_span)</small></p>
+            [span_17](start_span)<p>Professional contacts who can verify my integrity and dependability[span_17](end_span).</p>
+            [span_18](start_span)<p><em>*References have been contacted and approved in advance[span_18](end_span).</em></p>
         </section>
     </main>
 
     <script>
-        // --- JAVASCRIPT ANIMATIONS ---
-        
-        // Generate Starry Sky
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 150; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 3 + 'px';
-            star.style.width = size;
-            star.style.height = size;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
-            starsContainer.appendChild(star);
+        // --- HIGH TECH: PARTICLE CANVAS ENGINE ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        // Scroll Reveal Logic
-        const observerOptions = { threshold: 0.1 };
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if(this.size > 0.2) this.size -= 0.01;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(125, 211, 252, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for(let i = 0; i < 50; i++) { particles.push(new Particle()); }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for(let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if(particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                    particles.push(new Particle());
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Scroll reveal logic for cards
+        const sections = document.querySelectorAll('.resume-section');
+        const options = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0) scale(1)";
                 }
             });
-        }, observerOptions);
+        }, options);
 
-        document.querySelectorAll('.glass-card').forEach(card => {
-            observer.observe(card);
+        sections.forEach(s => {
+            s.style.opacity = "0";
+            s.style.transform = "translateY(50px) scale(0.9)";
+            s.style.transition = "all 0.6s ease-out";
+            observer.observe(s);
         });
     </script>
 </body>
