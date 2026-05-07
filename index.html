@@ -3,250 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celestial Resume | Lofi Aesthetic</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
-
+    <title>Celestial Resume | Lofi Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
+        /* --- CSS STYLES --- */
         :root {
-            --sky-dark: #020617;
-            --sky-blue: #0ea5e9;
-            --accent: #7dd3fc;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #e2e8f0;
+            --sky-blue: #a2d2ff;
+            --deep-space: #0b132b;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
-        /* --- Global Styles --- */
         body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #0f172a, #020617);
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            color: var(--sky-blue);
             font-family: 'Quicksand', sans-serif;
-            color: var(--text-main);
+            margin: 0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- Celestial Background Layer --- */
+        /* Star Background Animation */
         .stars-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
-            overflow: hidden;
+            background: transparent;
         }
 
-        .star-layer {
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
             background: white;
-            box-shadow: 0 0 10px white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
         }
 
-        /* --- Layout & Glassmorphism --- */
-        .resume-wrapper {
-            max-width: 850px;
-            margin: 80px auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Glassmorphism Layout */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 50px 0;
         }
 
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(162, 210, 255, 0.1);
             border-radius: 24px;
-            padding: 2.5rem;
-            margin-bottom: 2.5rem;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            transform: scale(1.02);
-            border: 1px solid var(--sky-blue);
-            box-shadow: 0 0 30px rgba(14, 165, 233, 0.15);
-        }
-
-        /* --- Typography --- */
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            margin: 0 0 1rem 0;
-        }
-
-        .glow-title {
-            font-size: 3.5rem;
-            background: linear-gradient(to right, #fff, var(--sky-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(125, 211, 252, 0.5));
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--accent);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* --- Grid & Components --- */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid var(--sky-blue);
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin: 5px;
-            font-size: 0.85rem;
-            animation: pulse 4s infinite ease-in-out;
-        }
-
-        /* --- Animations --- */
-        .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 1s ease-out;
         }
 
-        .reveal.active {
+        .glass-card.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-3px); }
+        .glass-card:hover {
+            transform: scale(1.02);
+            border-color: var(--sky-blue);
+            box-shadow: 0 0 20px rgba(162, 210, 255, 0.2);
         }
 
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .glow-title { font-size: 2.5rem; }
+        h1, h3 {
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--sky-blue);
         }
+
+        .tag {
+            display: inline-block;
+            background: rgba(162, 210, 255, 0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(162, 210, 255, 0.3);
+        }
+
+        .social-links { margin-top: 15px; opacity: 0.8; }
+        .entry { margin-top: 20px; }
+        .date { float: right; font-size: 0.9rem; opacity: 0.7; }
     </style>
 </head>
 <body>
 
-    <div class="stars-container" id="starField"></div>
+    <div class="stars-container" id="stars"></div>
 
-    <main class="resume-wrapper">
-        <header class="glass-card reveal">
-            <h1 class="glow-title">Alex Sterling</h1>
-            <p class="subtitle">Digital Architect</p>
-            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
-            <p>📍 Orbit Station 9 | 📧 hello@alexspace.io | 🔗 linkedin.com/in/alex</p>
+    <main class="container">
+        <header class="glass-card" id="header">
+            <h1>Your Full Name</h1>
+            <p>Miami, FL | [span_3](start_span)305-555-0185 | sflores@email.com</p>[span_3](end_span)
+            <div class="social-links">LinkedIn • GitHub • Portfolio</div>
         </header>
 
-        <section class="glass-card reveal">
-            <h3>// Objective</h3>
-            <p>Seeking to leverage 5+ years of aesthetic engineering to build immersive web experiences that prioritize user tranquility and high-performance functionality.</p>
+        <section class="glass-card">
+            <h3>Objective</h3>
+            [span_4](start_span)<p>Experienced professional seeking to apply a technical background to exceed engineering and business needs while fostering an aesthetic and organized work environment.[span_4](end_span)</p>
         </section>
 
-        <div class="grid">
-            <section class="glass-card reveal">
-                <h3>// Education</h3>
-                <div style="border-left: 2px solid var(--sky-blue); padding-left: 15px;">
-                    <h4 style="margin:0">B.S. Interaction Design</h4>
-                    <small>Skyline University | 2018 - 2022</small>
-                </div>
-            </section>
-
-            <section class="glass-card reveal">
-                <h3>// Professional Experience</h3>
-                <div style="border-left: 2px solid var(--sky-blue); padding-left: 15px;">
-                    <h4 style="margin:0">Senior Creative Lead</h4>
-                    <small>Nebula Systems | 2022 - Present</small>
-                </div>
-            </section>
-        </div>
-
-        <section class="glass-card reveal">
-            <h3>// Tech Constellation</h3>
-            <div class="skill-tag">JavaScript ES6+</div>
-            <div class="skill-tag">Three.js</div>
-            <div class="skill-tag">React / Next.js</div>
-            <div class="skill-tag">CSS Animations</div>
-            <div class="skill-tag">UI/UX Strategy</div>
+        <section class="glass-card">
+            <h3>Education</h3>
+            <div class="entry">
+                <span class="date">2020 - 2024</span>
+                <strong>North Manhattan University</strong>
+                [span_5](start_span)<p>Bachelor of Science in Communication[span_5](end_span)</p>
+            </div>
         </section>
 
-        <section class="glass-card reveal">
-            <h3>// Honors & Activities</h3>
-            <p>✨ <b>Global Design Prize 2025:</b> Awarded for innovative glassmorphic interfaces.</p>
-            <p>✨ <b>Open Source Contributor:</b> Active member of the 'Lofi-UI' library community.</p>
+        <section class="glass-card">
+            <h3>Professional Experience</h3>
+            <div class="entry">
+                <span class="date">Oct 2020 - Present</span>
+                <strong>Studio Marketing Firm</strong>
+                [span_6](start_span)<p><em>Director of Outside Sales</em>[span_6](end_span)</p>
+                <ul>
+                    [span_7](start_span)<li>Promoted company products at various seminars and conventions.[span_7](end_span)</li>
+                    [span_8](start_span)<li>Drove over $250k in profits for the company.[span_8](end_span)</li>
+                    [span_9](start_span)<li>Oversaw a team of 15+ employees.[span_9](end_span)</li>
+                </ul>
+            </div>
         </section>
 
-        <footer class="glass-card reveal" style="text-align: center;">
-            <h3>// References</h3>
-            <p>Available upon request. Let's build something beautiful together.</p>
-        </footer>
+        <section class="glass-card">
+            <h3>Skills</h3>
+            <div class="skill-tags">
+                <span class="tag">Sales Strategy</span>
+                [span_10](start_span)<span class="tag">C++ / Linux</span>[span_10](end_span)
+                [span_11](start_span)<span class="tag">AutoCAD</span>[span_11](end_span)
+                [span_12](start_span)<span class="tag">Bilingual (English/Italian)</span>[span_12](end_span)
+                [span_13](start_span)<span class="tag">Project Management</span>[span_13](end_span)
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <h3>Honors & Awards</h3>
+            [span_14](start_span)<p>• Certified Scrum Master[span_14](end_span)</p>
+            [span_15](start_span)<p>• Received maximum score on overall client satisfaction[span_15](end_span)</p>
+        </section>
+
+        <section class="glass-card">
+            <h3>References</h3>
+            [span_16](start_span)<p>Professional references available upon request.[span_16](end_span)</p>
+            [span_17](start_span)<p><small>Note: Permission obtained from all references in advance.[span_17](end_span)</small></p>
+        </section>
     </main>
 
     <script>
-        // 1. Dynamic Star Creation Logic
-        const starField = document.getElementById('starField');
-        const starCount = 150;
-
-        for (let i = 0; i < starCount; i++) {
+        // --- JAVASCRIPT ANIMATIONS ---
+        
+        // Generate Starry Sky
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
             const star = document.createElement('div');
-            star.className = 'star-layer';
-            
-            // Randomize position
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            
-            // Randomize size (1px to 3px)
-            const size = Math.random() * 3;
-            
-            star.style.left = `${x}%`;
-            star.style.top = `${y}%`;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            
-            // Randomize twinkle animation duration
-            const duration = 2 + Math.random() * 5;
-            star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
-            
-            starField.appendChild(star);
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            starsContainer.appendChild(star);
         }
 
-        // Add Twinkle Keyframes via JS
-        const styleSheet = document.createElement("style");
-        styleSheet.innerText = `
-            @keyframes twinkle {
-                0%, 100% { opacity: 0.3; transform: scale(1); }
-                50% { opacity: 1; transform: scale(1.2); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-
-        // 2. Scroll Reveal Logic
-        const revealSections = () => {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(window_el => {
-                const triggerBottom = window.innerHeight / 5 * 4;
-                const elementTop = window_el.getBoundingClientRect().top;
-                
-                if(elementTop < triggerBottom) {
-                    window_el.classList.add('active');
+        // Scroll Reveal Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        };
+        }, observerOptions);
 
-        window.addEventListener('scroll', revealSections);
-        // Run once on load to show top elements
-        revealSections();
+        document.querySelectorAll('.glass-card').forEach(card => {
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
